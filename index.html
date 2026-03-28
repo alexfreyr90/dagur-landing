@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dagur — Apex Predator of Love 🌹</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --rose: #e63946;
+  --rose-dark: #b8212d;
+  --gold: #f4a261;
+  --cream: #fdf6ec;
+  --dark: #1a1a2e;
+  --darker: #0f0f1a;
+  --green: #2d6a4f;
+  --beer: #f4a236;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--darker);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, var(--darker) 0%, #16213e 50%, var(--dark) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(230,57,70,0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 50%, rgba(244,162,97,0.06) 0%, transparent 50%);
+  animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+.badge {
+  display: inline-block;
+  background: rgba(230,57,70,0.15);
+  border: 1px solid rgba(230,57,70,0.3);
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--rose);
+  margin-bottom: 1.5rem;
+  animation: fadeInDown 0.8s ease;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  animation: fadeInUp 1s ease;
+}
+
+h1 .highlight {
+  background: linear-gradient(135deg, var(--rose), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 2rem;
+  animation: fadeInUp 1.2s ease;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+  animation: fadeInUp 1.4s ease;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 25px rgba(230,57,70,0.4);
+  animation: fadeInUp 1.6s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 35px rgba(230,57,70,0.5);
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  opacity: 0.4;
+  font-size: 1.5rem;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* PHOTO GALLERY */
+.gallery {
+  padding: 5rem 1.5rem;
+  background: var(--dark);
+  text-align: center;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.5rem;
+}
+
+.section-sub {
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 3rem;
+  font-size: 0.95rem;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.photo-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: linear-gradient(135deg, #2a2a4a, #1a1a3a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.photo-card:hover { transform: scale(1.02); }
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-placeholder {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255,255,255,0.3);
+}
+
+.photo-placeholder .icon { font-size: 4rem; margin-bottom: 1rem; }
+.photo-placeholder p { font-size: 0.9rem; }
+
+.photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.5rem 1.5rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  font-style: italic;
+}
+
+/* STATS BAR */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.05);
+  max-width: 900px;
+  margin: 0 auto 4rem;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.stat {
+  padding: 2rem 1rem;
+  text-align: center;
+  background: var(--darker);
+}
+
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0.3rem;
+}
+
+/* ABOUT SECTION */
+.about {
+  padding: 5rem 1.5rem;
+  background: var(--darker);
+}
+
+.about-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 2rem;
+}
+
+.about-text {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1.5rem;
+}
+
+.traits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 2.5rem;
+}
+
+.trait {
+  padding: 0.6rem 1.4rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+  transition: all 0.3s ease;
+}
+
+.trait:hover {
+  background: rgba(230,57,70,0.1);
+  border-color: rgba(230,57,70,0.3);
+  color: var(--rose);
+}
+
+/* WHAT HE OFFERS */
+.offers {
+  padding: 5rem 1.5rem;
+  background: var(--dark);
+}
+
+.offers-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+
+.offers h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.5rem;
+}
+
+.offers .section-sub { margin-bottom: 3rem; }
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.offer-card {
+  padding: 2.5rem 1.5rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.offer-card:hover {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-5px);
+}
+
+.offer-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.offer-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.offer-card p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+/* REQUIREMENTS */
+.requirements {
+  padding: 5rem 1.5rem;
+  background: var(--darker);
+  text-align: center;
+}
+
+.req-inner { max-width: 700px; margin: 0 auto; }
+
+.requirements h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.5rem;
+}
+
+.req-list {
+  list-style: none;
+  margin-top: 2.5rem;
+  text-align: left;
+}
+
+.req-list li {
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 0.8rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.req-list li:hover {
+  background: rgba(230,57,70,0.08);
+  border-color: rgba(230,57,70,0.15);
+}
+
+.req-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+/* TESTIMONIALS (FAKE) */
+.testimonials {
+  padding: 5rem 1.5rem;
+  background: var(--dark);
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.5rem;
+}
+
+.testimonials .section-sub { margin-bottom: 3rem; }
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  padding: 2rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  text-align: left;
+}
+
+.testimonial-card .stars { color: var(--gold); margin-bottom: 1rem; font-size: 1.1rem; }
+
+.testimonial-card .quote {
+  font-style: italic;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.testimonial-card .author {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* CTA FINAL */
+.final-cta {
+  padding: 6rem 1.5rem;
+  background: linear-gradient(135deg, var(--darker), #16213e);
+  text-align: center;
+  position: relative;
+}
+
+.final-cta h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  margin-bottom: 1rem;
+}
+
+.final-cta p {
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+}
+
+.contact-methods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.contact-btn.primary {
+  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  color: #fff;
+  box-shadow: 0 4px 25px rgba(230,57,70,0.3);
+}
+
+.contact-btn.secondary {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.contact-btn:hover { transform: translateY(-2px); }
+
+/* FOOTER */
+footer {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: rgba(255,255,255,0.2);
+  font-size: 0.8rem;
+  background: var(--darker);
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+
+/* FLOATING ELEMENTS */
+.floating-rose {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 20px rgba(230,57,70,0.4);
+  cursor: pointer;
+  z-index: 100;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+}
+
+.floating-rose:hover { transform: scale(1.1) rotate(10deg); }
+
+/* BEER COUNTER EASTER EGG */
+.beer-counter {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: var(--beer);
+  z-index: 100;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease;
+  border: 1px solid rgba(244,162,54,0.2);
+}
+
+.beer-counter:active { transform: scale(0.95); }
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .photo-grid { grid-template-columns: 1fr; max-width: 350px; }
+  .offer-grid { grid-template-columns: 1fr; }
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .contact-methods { flex-direction: column; align-items: center; }
+  .contact-btn { width: 100%; max-width: 300px; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- BEER COUNTER EASTER EGG -->
+<div class="beer-counter" id="beerCounter" onclick="addBeer()">
+  🍺 <span id="beerCount">0</span> cervezas
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="badge">🌹 Currently Single & Searching</div>
+    <h1>Meet <span class="highlight">Dagur</span></h1>
+    <p class="subtitle">The Apex Predator of Love in Vesturbær</p>
+    <p class="tagline">
+      Flower shop owner by day. Cerveza connoisseur by night.
+      One man. Infinite bouquets. Zero girlfriend.
+      <strong>Let's fix that.</strong>
+    </p>
+    <a href="#contact" class="cta-btn">Apply for the Position 💌</a>
+  </div>
+  <div class="scroll-hint">↓</div>
+</section>
+
+<!-- STATS -->
+<section class="gallery">
+  <div class="stats reveal">
+    <div class="stat">
+      <div class="stat-number">1</div>
+      <div class="stat-label">Flower Shop</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Free Bouquets</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">0</div>
+      <div class="stat-label">Girlfriends</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Apex Predator</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section class="gallery" style="padding-top: 0;">
+  <h2 class="section-title reveal">The Man, The Myth, The Florist</h2>
+  <p class="section-sub reveal">Swipe-worthy since day one</p>
+  <div class="photo-grid">
+    <div class="photo-card reveal">
+      <img src="photo4.jpeg" alt="Dagur holding a bouquet at Blómatorgið">
+      <div class="photo-caption">The man, the bouquet, the legend — Blómatorgið</div>
+    </div>
+    <div class="photo-card reveal">
+      <img src="photo1.jpeg" alt="Dagur at a romantic dinner with a rose">
+      <div class="photo-caption">Romantic dinner energy. Rose included. Date not included (yet).</div>
+    </div>
+    <div class="photo-card reveal">
+      <img src="photo5.jpeg" alt="Dagur enjoying a cerveza at a pub">
+      <div class="photo-caption">The cerveza connoisseur in his natural habitat</div>
+    </div>
+  </div>
+
+  <!-- SECOND ROW -->
+  <div class="photo-grid" style="margin-top: 1.5rem;">
+    <div class="photo-card reveal">
+      <img src="photo3.jpeg" alt="Dagur helping a customer at the flower shop">
+      <div class="photo-caption">Customer service level: apex predator</div>
+    </div>
+    <div class="photo-card reveal">
+      <img src="photo2.jpeg" alt="Dagur looking confident">
+      <div class="photo-caption">Making Iceland great again... one bouquet at a time</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-inner reveal">
+    <h2>Who is Dagur?</h2>
+    <p class="about-text">
+      Picture this: a Viking descendant with the soul of a poet, the hands of a florist,
+      and the appetite of a man who has personally kept Vesturbær's cerveza supply chain
+      in business since 2019.
+    </p>
+    <p class="about-text">
+      As the proud owner of <strong style="color: var(--green);">Blómatorgið</strong> in
+      Vesturbær, Dagur spends his days surrounded by beautiful flowers — but his nights?
+      His nights are spent wondering why none of them text back.
+    </p>
+    <p class="about-text">
+      He calls himself an <em>apex predator</em>. His friends call him
+      "the guy who brings flowers to every party." Either way, this man is on a mission:
+      to find a queen worthy of his kingdom of petals and pints.
+    </p>
+    <div class="traits">
+      <span class="trait">🌹 Flower King</span>
+      <span class="trait">🍺 Cerveza Sommelier</span>
+      <span class="trait">🦁 Apex Predator</span>
+      <span class="trait">🇮🇸 100% Icelandic</span>
+      <span class="trait">💪 Loves Curves</span>
+      <span class="trait">🌙 Hopeless Romantic</span>
+      <span class="trait">🏪 Small Business Owner</span>
+      <span class="trait">🫶 Big Heart Energy</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT HE OFFERS -->
+<section class="offers">
+  <div class="offers-inner">
+    <h2 class="reveal">The Dagur Package™</h2>
+    <p class="section-sub reveal">What you unlock when you date this man</p>
+    <div class="offer-grid">
+      <div class="offer-card reveal">
+        <div class="offer-icon">💐</div>
+        <h3>Lifetime Flowers</h3>
+        <p>He literally owns a flower shop. You will never, ever go without fresh roses. Every argument ends with a bouquet. That's not a promise, it's a business model.</p>
+      </div>
+      <div class="offer-card reveal">
+        <div class="offer-icon">🍻</div>
+        <h3>Infinite Cerveza Dates</h3>
+        <p>Dagur's idea of a romantic evening is a cold cerveza, a warm sunset, and the love of his life. Two out of three aren't bad — he just needs you for the full set.</p>
+      </div>
+      <div class="offer-card reveal">
+        <div class="offer-icon">🦁</div>
+        <h3>Apex Protection</h3>
+        <p>This man calls himself an apex predator. Will he protect you from danger? Probably. Will he scream if he sees a spider? Also probably. But the energy is there.</p>
+      </div>
+      <div class="offer-card reveal">
+        <div class="offer-icon">🇮🇸</div>
+        <h3>Vesturbær VIP Access</h3>
+        <p>Get the full Reykjavík experience. Front row at Blómatorgið. First pick of every delivery. The neighbors already think you're together anyway.</p>
+      </div>
+      <div class="offer-card reveal">
+        <div class="offer-icon">👨‍🍳</div>
+        <h3>Questionable Cooking</h3>
+        <p>He can't cook, but he WILL try. And when the kitchen fills with smoke, he'll hand you a cerveza and order pizza. It's called problem-solving.</p>
+      </div>
+      <div class="offer-card reveal">
+        <div class="offer-icon">💃</div>
+        <h3>Dance Floor Energy</h3>
+        <p>Three cervezas in, this man becomes John Travolta. Quality of dancing not guaranteed. Confidence? Absolutely guaranteed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REQUIREMENTS -->
+<section class="requirements">
+  <div class="req-inner">
+    <h2 class="reveal">What Dagur Is Looking For</h2>
+    <p class="section-sub reveal">The official checklist</p>
+    <ul class="req-list">
+      <li class="reveal">
+        <span class="req-icon">🍑</span>
+        <span><strong>Thick & fabulous.</strong> Dagur appreciates curves the way he appreciates a perfectly poured cerveza — with deep admiration and respect.</span>
+      </li>
+      <li class="reveal">
+        <span class="req-icon">😂</span>
+        <span><strong>Sense of humor required.</strong> You'll need it. He thinks flower puns are peak comedy. ("I'm rooting for us!" — actual Dagur quote.)</span>
+      </li>
+      <li class="reveal">
+        <span class="req-icon">🍺</span>
+        <span><strong>Cerveza-compatible.</strong> You don't have to love beer, but you must tolerate his detailed opinions on lager vs. pilsner at any given moment.</span>
+      </li>
+      <li class="reveal">
+        <span class="req-icon">🌸</span>
+        <span><strong>Not allergic to flowers.</strong> This is a dealbreaker. His car, home, and soul are all covered in pollen. There is no escape.</span>
+      </li>
+      <li class="reveal">
+        <span class="req-icon">❤️</span>
+        <span><strong>Ready for a big heart.</strong> Behind the apex predator persona is a man who will remember your favorite flower and surprise you with it on a random Tuesday.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <h2 class="reveal">What People Say</h2>
+  <p class="section-sub reveal">Totally real and not made up at all</p>
+  <div class="testimonial-grid">
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"Dagur once made me a bouquet so beautiful I cried. Then he handed me a cerveza and said 'don't worry, flowers are temporary, beer is eternal.' I've never felt more understood."</p>
+      <p class="author">— A loyal Blómatorgið customer</p>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="quote">"My friend Dagur is single and I honestly don't understand why. He's an apex predator. He owns a flower shop. He is the complete package. Someone please date this man so he stops third-wheeling us."</p>
+      <p class="author">— His best friend (who made this website)</p>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★☆</div>
+      <p class="quote">"He brought flowers to a house party. FLOWERS. To a HOUSE PARTY. One star deducted because he also brought eight cervezas — for himself."</p>
+      <p class="author">— Party host, Vesturbær</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact">
+  <h2 class="reveal">Ready to Date an <span class="highlight">Apex Predator?</span></h2>
+  <p class="reveal">Applications are open. Flowers are ready. Cerveza is chilling.</p>
+  <div class="contact-methods reveal">
+    <a href="https://www.instagram.com" class="contact-btn primary" target="_blank">📱 Slide Into His DMs</a>
+    <a href="https://maps.google.com/?q=Blómatorgið+Vesturbær" class="contact-btn secondary" target="_blank">🌹 Visit Blómatorgið</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Made with ❤️ and questionable judgment by Dagur's friends &nbsp;|&nbsp; <a href="#">Blómatorgið</a> &copy; 2026</p>
+  <p style="margin-top: 0.5rem; font-size: 0.7rem;">No apex predators were harmed in the making of this website.</p>
+</footer>
+
+<!-- FLOATING ROSE -->
+<a href="#contact" class="floating-rose">🌹</a>
+
+<script>
+// Beer counter Easter egg
+let beers = 0;
+function addBeer() {
+  beers++;
+  document.getElementById('beerCount').textContent = beers;
+  const counter = document.getElementById('beerCounter');
+  counter.style.transform = 'scale(1.2)';
+  setTimeout(() => counter.style.transform = 'scale(1)', 200);
+
+  if (beers === 10) counter.innerHTML = '🍺 <span id="beerCount">10</span> cervezas — ¡Dagur approves!';
+  if (beers === 25) counter.innerHTML = '🍺 <span id="beerCount">25</span> — you might be The One';
+  if (beers === 50) counter.innerHTML = '🍺 <span id="beerCount">50</span> — marry this person, Dagur';
+}
+
+// Scroll reveal
+const revealElements = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+revealElements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
