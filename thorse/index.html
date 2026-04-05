@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THORSE — Premium Horse Hair Products from Iceland</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#0a0a0a;--white:#fafafa;--gold:#b8964e;--gold-light:#d4b87a;--cream:#f5f1eb;--charcoal:#1a1a1a;--grey:#888}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:background 0.3s}
+nav.scrolled{background:rgba(10,10,10,0.95);backdrop-filter:blur(10px)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:6px;color:var(--gold);text-decoration:none;font-weight:700}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.8rem;text-transform:uppercase;letter-spacing:2px;transition:color 0.3s}
+.nav-links a:hover{color:var(--gold)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr;opacity:0.2}
+.hero-bg div{background-size:cover;background-position:center;filter:grayscale(0.5)}
+.hero-bg div:nth-child(1){background-image:url('https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=800&q=70')}
+.hero-bg div:nth-child(2){background-image:url('https://images.unsplash.com/photo-1534361960057-19889db9621e?w=800&q=70')}
+.hero-bg div:nth-child(3){background-image:url('https://images.unsplash.com/photo-1508669232496-137b159c1cdb?w=800&q=70')}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,10,10,0.4),rgba(10,10,10,0.95))}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:8px;color:var(--gold);margin-bottom:2rem;font-weight:500}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(4rem,12vw,9rem);font-weight:700;letter-spacing:12px;line-height:0.95;margin-bottom:1.5rem}
+.hero h1 span{display:block;font-size:clamp(1rem,3vw,1.4rem);font-family:'DM Sans',sans-serif;font-weight:300;letter-spacing:6px;color:rgba(255,255,255,0.4);margin-top:1rem}
+.hero-line{width:60px;height:1px;background:var(--gold);margin:2rem auto}
+.hero-desc{font-size:1.05rem;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.9;max-width:550px;margin:0 auto 3rem}
+.hero-cta{display:inline-block;padding:1.2rem 3.5rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;text-transform:uppercase;letter-spacing:4px;font-size:0.75rem;font-weight:600;transition:all 0.4s}
+.hero-cta:hover{background:var(--gold);color:var(--black)}
+
+/* MANIFESTO */
+.manifesto{padding:8rem 2rem;background:var(--cream);color:var(--black);text-align:center}
+.manifesto-inner{max-width:750px;margin:0 auto}
+.manifesto h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:400;color:var(--charcoal);margin-bottom:2rem;line-height:1.3}
+.manifesto p{font-size:1.05rem;line-height:2;color:#555;font-weight:300}
+.manifesto .highlight{color:var(--gold);font-weight:500}
+
+/* PRODUCT CATEGORIES */
+.categories{padding:6rem 2rem;background:var(--black)}
+.cat-header{text-align:center;margin-bottom:4rem}
+.cat-header h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:400;margin-bottom:0.5rem}
+.cat-header p{color:var(--grey);font-weight:300}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:1px;max-width:1200px;margin:0 auto;background:rgba(255,255,255,0.05)}
+.cat-card{background:var(--black);padding:3rem 2.5rem;transition:all 0.4s;position:relative;overflow:hidden}
+.cat-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--gold);transform:scaleX(0);transition:transform 0.4s;transform-origin:left}
+.cat-card:hover::before{transform:scaleX(1)}
+.cat-card:hover{background:rgba(184,150,78,0.03)}
+.cat-num{font-family:'Playfair Display',serif;font-size:3rem;color:rgba(184,150,78,0.15);font-weight:700;margin-bottom:1rem}
+.cat-card h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;margin-bottom:0.8rem;color:var(--white)}
+.cat-card p{font-size:0.88rem;color:rgba(255,255,255,0.4);line-height:1.7;margin-bottom:1rem}
+.cat-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+.cat-tag{padding:0.3rem 0.8rem;border:1px solid rgba(184,150,78,0.2);border-radius:20px;font-size:0.7rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px}
+
+/* PRODUCT GALLERY */
+.gallery{padding:6rem 2rem;background:var(--charcoal)}
+.gallery-header{text-align:center;margin-bottom:3rem}
+.gallery-header h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:400;margin-bottom:0.5rem}
+.gallery-header p{color:var(--grey);font-weight:300}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:0.5rem;max-width:1100px;margin:0 auto}
+.g-item{position:relative;overflow:hidden;border-radius:8px;aspect-ratio:1/1}
+.g-item.wide{grid-column:span 2;aspect-ratio:2/1}
+.g-item.tall{grid-row:span 2}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s,filter 0.4s;filter:grayscale(0.3)}
+.g-item:hover img{transform:scale(1.05);filter:grayscale(0)}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,0.8));display:flex;align-items:flex-end;padding:1.5rem;opacity:0;transition:opacity 0.4s}
+.g-item:hover .g-overlay{opacity:1}
+.g-overlay span{font-size:0.85rem;color:rgba(255,255,255,0.8);font-weight:300}
+
+/* MARKET INSIGHT */
+.insight{padding:6rem 2rem;background:var(--cream);color:var(--black)}
+.insight-inner{max-width:1000px;margin:0 auto}
+.insight h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,2.8rem);text-align:center;margin-bottom:3rem;font-weight:400;color:var(--charcoal)}
+.insight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.insight-card{padding:2.5rem;background:#fff;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,0.04)}
+.insight-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:1rem;color:var(--charcoal)}
+.insight-card p{font-size:0.9rem;color:#666;line-height:1.7}
+.insight-stat{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--gold);font-weight:700;margin-bottom:0.5rem}
+
+/* ICELAND SECTION */
+.iceland{padding:6rem 2rem;background:var(--black);text-align:center;position:relative}
+.iceland::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=1400&q=70') center/cover;opacity:0.1;filter:grayscale(0.8)}
+.iceland-content{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.iceland h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:400;margin-bottom:1.5rem}
+.iceland p{color:rgba(255,255,255,0.5);line-height:1.9;font-weight:300;margin-bottom:1rem}
+
+/* CTA */
+.cta{padding:8rem 2rem;background:linear-gradient(135deg,var(--charcoal),var(--black));text-align:center}
+.cta h2{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,7vw,4rem);font-weight:300;margin-bottom:1rem;letter-spacing:2px}
+.cta h2 em{color:var(--gold);font-style:italic}
+.cta p{color:var(--grey);margin-bottom:3rem;font-weight:300;font-size:1.05rem}
+.cta-buttons{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+.btn-gold{padding:1.2rem 3rem;background:var(--gold);color:var(--black);text-decoration:none;text-transform:uppercase;letter-spacing:3px;font-size:0.8rem;font-weight:700;transition:all 0.3s}
+.btn-gold:hover{background:var(--gold-light)}
+.btn-outline{padding:1.2rem 3rem;border:1px solid rgba(255,255,255,0.2);color:var(--white);text-decoration:none;text-transform:uppercase;letter-spacing:3px;font-size:0.8rem;font-weight:500;transition:all 0.3s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+/* FOOTER */
+footer{padding:3rem 2rem;text-align:center;background:var(--black);border-top:1px solid rgba(255,255,255,0.05)}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.5rem;letter-spacing:8px;color:var(--gold);margin-bottom:0.5rem}
+footer p{color:rgba(255,255,255,0.2);font-size:0.8rem}
+
+/* ANIMATIONS */
+.fade{opacity:0;transform:translateY(25px);transition:opacity 0.7s,transform 0.7s}
+.fade.vis{opacity:1;transform:none}
+
+@media(max-width:768px){
+  nav{padding:1rem}
+  .nav-links{display:none}
+  .cat-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .g-item.wide{grid-column:span 1;aspect-ratio:4/3}
+  .g-item.tall{grid-row:span 1;aspect-ratio:3/4}
+  .insight-grid{grid-template-columns:1fr}
+  .cta-buttons{flex-direction:column;align-items:center}
+  .btn-gold,.btn-outline{width:100%;max-width:300px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">THORSE</a>
+  <div class="nav-links">
+    <a href="#products">Products</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#market">Market</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"><div></div><div></div><div></div></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">From the Land of Fire & Ice</div>
+    <h1>THORSE<span>Premium Horse Hair Products</span></h1>
+    <div class="hero-line"></div>
+    <p class="hero-desc">Transforming the legendary hair of Iceland's thousand-year-old horses into luxury products for the world. Ethical. Sustainable. Extraordinary.</p>
+    <a href="#products" class="hero-cta">Explore Products</a>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="manifesto-inner fade">
+    <h2>The Icelandic horse has endured <span class="highlight">a thousand years</span> of volcanic winters and Arctic storms.</h2>
+    <p>Their hair — thick, resilient, and impossibly beautiful — is nature's ultimate fiber. At THORSE, we honour this heritage by crafting it into products that carry the untamed spirit of Iceland. Every strand tells a story of survival, strength, and raw beauty.</p>
+  </div>
+</section>
+
+<section class="categories" id="products">
+  <div class="cat-header fade">
+    <h2>Product Universe</h2>
+    <p>Nine categories. Infinite possibilities.</p>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card fade">
+      <div class="cat-num">01</div>
+      <h3>Jewelry & Accessories</h3>
+      <p>Hand-braided bracelets, necklaces, earrings, and rings from Icelandic horse tail hair. Each piece is unique — no two strands curl alike. Huge demand in equestrian and luxury gift markets.</p>
+      <div class="cat-tags"><span class="cat-tag">85% Margin</span><span class="cat-tag">Low Startup</span><span class="cat-tag">Etsy Ready</span></div>
+    </div>
+    <div class="cat-card fade">
+      <div class="cat-num">02</div>
+      <h3>Luxury Bedding</h3>
+      <p>Pillows, mattress toppers, and duvets filled with curled Icelandic horse hair. Natural temperature regulation, hypoallergenic, and lasts 25+ years. Competing with Hästens at a fraction of the price.</p>
+      <div class="cat-tags"><span class="cat-tag">Premium</span><span class="cat-tag">Wellness</span><span class="cat-tag">$200–$2,000</span></div>
+    </div>
+    <div class="cat-card fade">
+      <div class="cat-num">03</div>
+      <h3>Woven Textiles & Fashion</h3>
+      <p>Horsehair fabric for haute couture, millinery, and interior design. Only 2 weavers exist worldwide — Iceland could become the third. Used in men's suit linings, structured skirts, and bridal headpieces.</p>
+      <div class="cat-tags"><span class="cat-tag">High Fashion</span><span class="cat-tag">Couture</span><span class="cat-tag">Rare Craft</span></div>
+    </div>
+    <div class="cat-card fade">
+      <div class="cat-num">04</div>
+      <h3>Artist & Luxury Brushes</h3>
+      <p>Paintbrushes, calligraphy brushes, shaving brushes, and grooming tools with Icelandic horsehair bristles. Anti-static, perfectly flexible, and naturally durable. A maker's dream material.</p>
+      <div class="cat-tags"><span class="cat-tag">Artisan</span><span class="cat-tag">$30–$200</span><span class="cat-tag">B2B + DTC</span></div>
+    </div>
+    <div class="cat-card fade">
+      <div class="cat-num">05</div>
+      <h3>Musical Instrument Bow Hair</h3>
+      <p>Cold-climate tail hair is the gold standard for violin, viola, and cello bows. Iceland's extreme conditions produce the strongest, grippiest bow hair in the world. Direct B2B to luthiers globally.</p>
+      <div class="cat-tags"><span class="cat-tag">B2B</span><span class="cat-tag">$150–$400/lb</span><span class="cat-tag">Niche</span></div>
+    </div>
+    <div class="cat-card fade">
+      <div class="cat-num">06</div>
+      <h3>Raku Ceramics Kits</h3>
+      <p>Horsehair creates unique carbon-trail patterns on hot pottery — no two pieces are ever the same. Sell curated kits with sorted Icelandic horse hair, instructions, and ceramic blanks to studios worldwide.</p>
+      <div class="cat-tags"><span class="cat-tag">Creative</span><span class="cat-tag">Kits</span><span class="cat-tag">Growing</span></div>
+    </div>
+    <div class="cat-card fade">
+      <div class="cat-num">07</div>
+      <h3>Heritage Rope & Cord</h3>
+      <p>Following 1,000-year-old Nordic tradition: hand-spun horsehair rope, decorative cord, and fishing leaders. Frost-resistant, impossibly strong, deeply historical. Perfect for heritage and equestrian markets.</p>
+      <div class="cat-tags"><span class="cat-tag">Nordic Heritage</span><span class="cat-tag">Traditional</span></div>
+    </div>
+    <div class="cat-card fade">
+      <div class="cat-num">08</div>
+      <h3>Upholstery & Interior Fill</h3>
+      <p>Curled horsehair padding for luxury furniture restoration and bespoke upholstery. The original premium stuffing material — resilient, breathable, and built to last a century.</p>
+      <div class="cat-tags"><span class="cat-tag">$50–$200/lb</span><span class="cat-tag">Restoration</span></div>
+    </div>
+    <div class="cat-card fade">
+      <div class="cat-num">09</div>
+      <h3>Home Décor & Lighting</h3>
+      <p>Horsehair-accented wall sconces, lampshades, and woven wall hangings. A unique texture that combines raw nature with contemporary design. Luxury interior designers are already using it.</p>
+      <div class="cat-tags"><span class="cat-tag">Interiors</span><span class="cat-tag">Bespoke</span><span class="cat-tag">High-End</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="gallery-header fade">
+    <h2>The Craft</h2>
+    <p>Horse hair transformed into art</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="g-item wide fade"><img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=800&q=80" alt="Icelandic horses" loading="lazy"><div class="g-overlay"><span>Icelandic horses — the source of everything</span></div></div>
+    <div class="g-item fade"><img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" alt="Handcrafted jewelry" loading="lazy"><div class="g-overlay"><span>Handcrafted horsehair jewelry</span></div></div>
+    <div class="g-item fade"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500&q=80" alt="Luxury bedding" loading="lazy"><div class="g-overlay"><span>Natural luxury bedding</span></div></div>
+    <div class="g-item fade"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&q=80" alt="Artist brushes" loading="lazy"><div class="g-overlay"><span>Premium artist brushes</span></div></div>
+    <div class="g-item wide fade"><img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?w=800&q=80" alt="Icelandic horse mane" loading="lazy"><div class="g-overlay"><span>Wind-sculpted manes — nature's finest fiber</span></div></div>
+  </div>
+</section>
+
+<section class="insight" id="market">
+  <div class="insight-inner">
+    <h2 class="fade">Why This Works in Iceland</h2>
+    <div class="insight-grid">
+      <div class="insight-card fade">
+        <div class="insight-stat">80K+</div>
+        <h3>Icelandic Horses</h3>
+        <p>Iceland has one of the highest horse-to-human ratios in the world. Hair is an abundant, renewable by-product of grooming and natural shedding — zero waste.</p>
+      </div>
+      <div class="insight-card fade">
+        <div class="insight-stat">1,000yr</div>
+        <h3>Purebred Heritage</h3>
+        <p>No horses have been imported to Iceland since the 10th century. The breed is genetically unique — and their hair carries properties found nowhere else on Earth.</p>
+      </div>
+      <div class="insight-card fade">
+        <div class="insight-stat">-30°C</div>
+        <h3>Cold-Climate Superiority</h3>
+        <p>Extreme cold produces thicker, stronger, more resilient hair. This is why Mongolian and Icelandic horse hair commands premium prices for violin bows and luxury textiles.</p>
+      </div>
+      <div class="insight-card fade">
+        <div class="insight-stat">2</div>
+        <h3>Competitors Worldwide</h3>
+        <p>Only John Boyd (UK, est. 1837) and Le Crin (France, est. 1814) weave horsehair fabric. The market is wide open for an Icelandic brand with authentic provenance.</p>
+      </div>
+      <div class="insight-card fade">
+        <div class="insight-stat">2.4M</div>
+        <h3>Tourists Per Year</h3>
+        <p>Iceland's tourism boom creates a massive retail opportunity. Horsehair jewelry and crafts as authentic Icelandic souvenirs with real story and heritage value.</p>
+      </div>
+      <div class="insight-card fade">
+        <div class="insight-stat">85%</div>
+        <h3>Jewelry Margins</h3>
+        <p>Horsehair jewelry has the lowest startup cost and highest margins of any product line. The "Made in Iceland" story adds 30-50% price premium versus generic horsehair products.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="iceland">
+  <div class="iceland-content fade">
+    <h2>Sustainable by Nature</h2>
+    <p>Every strand of THORSE hair is ethically collected during natural shedding seasons and regular grooming. No horse is ever harmed. The hair is a renewable by-product of Iceland's centuries-old horse culture — transforming waste into luxury.</p>
+    <p>We work directly with Icelandic farms, ensuring full traceability from pasture to product. Each item comes with a certificate of origin.</p>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <h2 class="fade">The Future is <em>THORSE</em></h2>
+  <p class="fade">Ready to build something extraordinary from Iceland's most legendary resource.</p>
+  <div class="cta-buttons fade">
+    <a href="mailto:alex@vitvelar.is" class="btn-gold">Get In Touch</a>
+    <a href="#products" class="btn-outline">View All Products</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">THORSE</div>
+  <p>Premium Icelandic Horse Hair Products &nbsp;|&nbsp; Reykjavík, Iceland &nbsp;|&nbsp; &copy; 2026</p>
+</footer>
+
+<script>
+// Scroll animations
+const fades=document.querySelectorAll('.fade');
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:0.1});
+fades.forEach(f=>io.observe(f));
+
+// Nav scroll
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)});
+</script>
+</body>
+</html>
