@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Bjarmi Ritual — Competitive Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f7f2eb;--warm:#ede5d8;--brown:#6b5235;--brown-l:#a68b65;--gold:#b8964e;--cream:#faf6f0;--dark:#3a3028;--text-l:#7a6e60;--white:#fffdf9;--sand:#d4c4a8;--green:#2d6a4f;--red:#c0392b;--blue:#2c3e7a}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark)}
+.hd{background:var(--brown);padding:1.5rem;text-align:center}
+.hd h1{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1.4rem;letter-spacing:5px}
+.hd p{color:rgba(255,255,255,0.5);font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;margin-top:0.3rem}
+.cover{padding:2rem 1.5rem;text-align:center;background:var(--white);border-bottom:2px solid var(--sand)}
+.cover h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--brown);margin-bottom:0.3rem}
+.cover p{color:var(--text-l);font-size:0.85rem}
+.mx{max-width:900px;margin:0 auto;padding:1.5rem 1rem}
+h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--brown);margin:1.5rem 0 1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--sand)}
+.intro{font-size:0.88rem;color:var(--text-l);line-height:1.7;margin-bottom:1.5rem}
+.comp{border:1px solid var(--sand);border-radius:12px;overflow:hidden;background:var(--white);margin-bottom:1.5rem}
+.comp-head{display:flex;justify-content:space-between;align-items:center;padding:1rem;background:var(--cream);border-bottom:1px solid var(--sand);flex-wrap:wrap;gap:0.5rem}
+.comp-name{font-weight:600;font-size:0.95rem;color:var(--brown)}
+.comp-loc{font-size:0.7rem;color:var(--text-l)}
+.comp-cat{padding:0.25rem 0.7rem;background:var(--brown);color:var(--white);font-size:0.6rem;border-radius:12px;text-transform:uppercase;letter-spacing:1px}
+.comp-body{padding:1rem}
+.comp-body p{font-size:0.82rem;color:var(--dark);line-height:1.6;margin-bottom:0.8rem}
+.comp-row{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.8rem}
+.comp-stat{background:var(--cream);padding:0.5rem 0.8rem;border-radius:8px}
+.comp-stat .label{font-size:0.6rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-l)}
+.comp-stat .val{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);font-weight:700}
+.comp-threat{padding:0.6rem 0.8rem;border-radius:8px;font-size:0.75rem;line-height:1.5}
+.low{background:#e8f5e9;color:#1b5e20}
+.med{background:#fff8e1;color:#e65100}
+.high{background:#ffebee;color:#b71c1c}
+
+.gap-section{background:var(--white);border:1px solid var(--sand);border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.gap-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.gap-item{padding:0.8rem;border-radius:8px;background:var(--cream)}
+.gap-item h4{font-size:0.8rem;color:var(--brown);margin-bottom:0.3rem}
+.gap-item p{font-size:0.75rem;color:var(--text-l);line-height:1.5}
+
+.matrix{width:100%;border-collapse:collapse;font-size:0.75rem;margin:1rem 0}
+.matrix th{background:var(--brown);color:var(--white);padding:0.6rem 0.5rem;text-align:left;font-size:0.65rem;text-transform:uppercase;letter-spacing:1px}
+.matrix td{padding:0.5rem;border-bottom:1px solid var(--sand);vertical-align:top}
+.matrix tr:nth-child(even) td{background:var(--cream)}
+.y{color:var(--green);font-weight:600}
+.n{color:var(--red);font-weight:600}
+.p{color:var(--gold);font-weight:600}
+.bj{background:rgba(184,150,78,0.08) !important}
+.bj td{font-weight:600}
+
+.verdict{background:var(--brown);color:var(--white);border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.verdict h3{color:var(--gold);border:none;padding:0;margin:0 0 0.8rem}
+.verdict p{font-size:0.85rem;color:rgba(255,255,255,0.7);line-height:1.7}
+.verdict strong{color:var(--gold)}
+
+.ft{background:var(--brown);padding:1.5rem;text-align:center;margin-top:2rem}
+.ft .br{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1rem;letter-spacing:5px}
+.ft p{color:rgba(255,255,255,0.4);font-size:0.6rem;margin-top:0.3rem}
+
+@media(max-width:600px){.comp-row,.gap-grid{grid-template-columns:1fr}.matrix{font-size:0.65rem}}
+</style>
+</head>
+<body>
+<div class="hd"><h1>BJARMI RITUAL</h1><p>Competitive Analysis — Confidential</p></div>
+<div class="cover"><h2>Competitive Landscape</h2><p>Businesses Using Horse Hair for Products — and Where Bjarmi Wins</p></div>
+
+<div class="mx">
+
+<p class="intro">This analysis maps every significant competitor using horse hair across textiles, bedding, sauna accessories, jewelry, and brushes. The conclusion: <strong>no company in the world</strong> currently makes sauna hats from horse hair. Bjarmi Ritual would be first to market.</p>
+
+<h3>1. Luxury Textiles & Fashion</h3>
+
+<div class="comp">
+<div class="comp-head"><div><div class="comp-name">John Boyd Textiles</div><div class="comp-loc">Castle Cary, UK — Est. 1837</div></div><span class="comp-cat">Woven Fabric</span></div>
+<div class="comp-body">
+<p>One of only two horsehair weavers left in the world. Weaves horsehair cloth on original 1870 looms for luxury upholstery, fashion, and interiors. 15 employees, 40 looms. Supplies to high-end furniture makers and fashion houses globally.</p>
+<div class="comp-row">
+<div class="comp-stat"><div class="label">Products</div><div class="val">Woven fabric</div></div>
+<div class="comp-stat"><div class="label">Price</div><div class="val">$80-500/yard</div></div>
+<div class="comp-stat"><div class="label">Market</div><div class="val">Interiors & Fashion</div></div>
+<div class="comp-stat"><div class="label">Size</div><div class="val">~15 employees</div></div>
+</div>
+<div class="comp-threat low">THREAT TO BJARMI: LOW — Different product category entirely. Potential future supplier or collaboration partner for woven textile products.</div>
+</div></div>
+
+<div class="comp">
+<div class="comp-head"><div><div class="comp-name">Le Crin / Manufacture du Crin (Métaphores)</div><div class="comp-loc">Challes, France — Est. 1814 — Hermès Group</div></div><span class="comp-cat">Luxury Textile</span></div>
+<div class="comp-body">
+<p>The only workshop in the world that hand-weaves horsehair. Owned by Hermès textile division (Métaphores). 16 weavers use 14 nineteenth-century Jacquard looms. Produces ~3.3 yards/day. Clients include the Louvre, Buckingham Palace, Elysée Palace, and the White House. Distributed via Kravet in the US.</p>
+<div class="comp-row">
+<div class="comp-stat"><div class="label">Products</div><div class="val">Hand-woven fabric</div></div>
+<div class="comp-stat"><div class="label">Price</div><div class="val">$200-1000+/yard</div></div>
+<div class="comp-stat"><div class="label">Parent</div><div class="val">Hermès Group</div></div>
+<div class="comp-stat"><div class="label">Output</div><div class="val">~3.3 yards/day</div></div>
+</div>
+<div class="comp-threat low">THREAT TO BJARMI: LOW — Ultra-luxury interior textile market. No overlap with sauna hats. Shows horse hair commands extreme premium in luxury markets — validates Bjarmi's positioning.</div>
+</div></div>
+
+<h3>2. Luxury Bedding</h3>
+
+<div class="comp">
+<div class="comp-head"><div><div class="comp-name">Hästens</div><div class="comp-loc">Köping, Sweden — Est. 1852</div></div><span class="comp-cat">Mattresses & Bedding</span></div>
+<div class="comp-body">
+<p>The world's most famous horsehair product brand. Handcrafted horsehair mattresses and beds ranging from $10,000 to $600,000+. Uses curled horsehair from mane and tail for natural spring, breathability, and temperature regulation. Global luxury brand with stores in 40+ countries.</p>
+<div class="comp-row">
+<div class="comp-stat"><div class="label">Products</div><div class="val">Mattresses, pillows, toppers</div></div>
+<div class="comp-stat"><div class="label">Price</div><div class="val">$10K-$600K+</div></div>
+<div class="comp-stat"><div class="label">Global Reach</div><div class="val">40+ countries</div></div>
+<div class="comp-stat"><div class="label">Founded</div><div class="val">1852 (173 years)</div></div>
+</div>
+<div class="comp-threat low">THREAT TO BJARMI: LOW — Completely different product. BUT: proves horsehair commands massive luxury premiums. Hästens is the benchmark for "horsehair = premium." Bjarmi can reference their market validation.</div>
+</div></div>
+
+<h3>3. Sauna Hat Competitors</h3>
+
+<div class="comp">
+<div class="comp-head"><div><div class="comp-name">Schvitzin</div><div class="comp-loc">Brooklyn, NY, USA</div></div><span class="comp-cat">Sauna Hats — Wool</span></div>
+<div class="comp-body">
+<p>Premium handcrafted sauna hats made from 100% wool. Made in USA. Strong brand and direct-to-consumer presence. Positioned as the premium sauna hat brand in North America.</p>
+<div class="comp-row">
+<div class="comp-stat"><div class="label">Material</div><div class="val">Wool felt</div></div>
+<div class="comp-stat"><div class="label">Price</div><div class="val">$40-80</div></div>
+<div class="comp-stat"><div class="label">Made in</div><div class="val">USA</div></div>
+<div class="comp-stat"><div class="label">Horse hair?</div><div class="val">NO</div></div>
+</div>
+<div class="comp-threat med">THREAT TO BJARMI: MEDIUM — Direct sauna hat competitor but uses wool, not horse hair. Bjarmi differentiates on material superiority and Icelandic provenance. Their price ceiling ($80) is Bjarmi's floor ($69).</div>
+</div></div>
+
+<div class="comp">
+<div class="comp-head"><div><div class="comp-name">Halsa</div><div class="comp-loc">Finland/USA</div></div><span class="comp-cat">Sauna Hats — Wool</span></div>
+<div class="comp-body">
+<p>100% natural merino wool sauna hats. Multiple designs. Growing DTC brand in the sauna accessories space.</p>
+<div class="comp-row">
+<div class="comp-stat"><div class="label">Material</div><div class="val">Merino wool</div></div>
+<div class="comp-stat"><div class="label">Price</div><div class="val">$30-60</div></div>
+<div class="comp-stat"><div class="label">Horse hair?</div><div class="val">NO</div></div>
+<div class="comp-stat"><div class="label">USP</div><div class="val">Finnish heritage</div></div>
+</div>
+<div class="comp-threat med">THREAT TO BJARMI: MEDIUM — Competes in same category. "Finnish" heritage is strong but Bjarmi counters with unique horse hair material + UNESCO-recognized Icelandic bathing culture.</div>
+</div></div>
+
+<div class="comp">
+<div class="comp-head"><div><div class="comp-name">BureBure / PetriStor / Sauna Guru</div><div class="comp-loc">Various (Eastern Europe)</div></div><span class="comp-cat">Sauna Hats — Wool (Mass)</span></div>
+<div class="comp-body">
+<p>Mass-market wool felt sauna hats sold primarily through Amazon and Etsy. Low prices ($15-35), factory-made, generic designs. High volume, low margin category.</p>
+<div class="comp-row">
+<div class="comp-stat"><div class="label">Material</div><div class="val">Wool felt</div></div>
+<div class="comp-stat"><div class="label">Price</div><div class="val">$15-35</div></div>
+<div class="comp-stat"><div class="label">Horse hair?</div><div class="val">NO</div></div>
+<div class="comp-stat"><div class="label">Channel</div><div class="val">Amazon/Etsy</div></div>
+</div>
+<div class="comp-threat low">THREAT TO BJARMI: LOW — Different market segment entirely. Bjarmi targets premium buyers willing to pay 3-5x for material innovation, provenance, and craftsmanship. These brands actually validate the market size.</div>
+</div></div>
+
+<h3>4. Horse Hair Jewelry</h3>
+
+<div class="comp">
+<div class="comp-head"><div><div class="comp-name">Tail Spin Bracelets</div><div class="comp-loc">USA — Est. 2009</div></div><span class="comp-cat">Custom Jewelry</span></div>
+<div class="comp-body">
+<p>Market leader in custom horsehair jewelry. 75,000+ customers since 2009. Customers send their own horse's hair for custom bracelets, necklaces, and rings. Strong emotional/memorial positioning.</p>
+<div class="comp-row">
+<div class="comp-stat"><div class="label">Model</div><div class="val">Custom (send your hair)</div></div>
+<div class="comp-stat"><div class="label">Customers</div><div class="val">75,000+</div></div>
+<div class="comp-stat"><div class="label">Price</div><div class="val">$40-200</div></div>
+<div class="comp-stat"><div class="label">Market</div><div class="val">Equestrian memorial</div></div>
+</div>
+<div class="comp-threat low">THREAT TO BJARMI: LOW — Different product. BUT: shows horse hair jewelry is a proven, scaled business. If Bjarmi expands into jewelry, this is the model to study.</div>
+</div></div>
+
+<div class="comp">
+<div class="comp-head"><div><div class="comp-name">Becoming Iceland</div><div class="comp-loc">Iceland</div></div><span class="comp-cat">Artisan Accessories</span></div>
+<div class="comp-body">
+<p>Icelandic artisans Páll and Rita create museum-quality jewelry from sheep horn, reindeer antler, and horsehair. Braided horsehair cord with horn pulls. Small-batch, premium positioning.</p>
+<div class="comp-row">
+<div class="comp-stat"><div class="label">Products</div><div class="val">Horn + horsehair jewelry</div></div>
+<div class="comp-stat"><div class="label">Location</div><div class="val">Iceland</div></div>
+<div class="comp-stat"><div class="label">Scale</div><div class="val">Artisan (2 people)</div></div>
+<div class="comp-stat"><div class="label">Overlap</div><div class="val">Uses Icelandic horse hair</div></div>
+</div>
+<div class="comp-threat low">THREAT TO BJARMI: LOW — Tiny artisan operation, different product. Potential collaboration partner. Validates that Icelandic horse hair has luxury appeal.</div>
+</div></div>
+
+<h3>5. Brushes & Grooming</h3>
+
+<div class="comp">
+<div class="comp-head"><div><div class="comp-name">GROOM Industries / Semogue / Various</div><div class="comp-loc">Global</div></div><span class="comp-cat">Grooming Brushes</span></div>
+<div class="comp-body">
+<p>Multiple brands produce horsehair shaving and grooming brushes. GROOM Industries (Canada) positions as premium. Semogue (Portugal, est. 1955) is established. Market is stable but not growing fast.</p>
+<div class="comp-row">
+<div class="comp-stat"><div class="label">Products</div><div class="val">Shaving & paint brushes</div></div>
+<div class="comp-stat"><div class="label">Price</div><div class="val">$20-150</div></div>
+<div class="comp-stat"><div class="label">Horse hair?</div><div class="val">YES</div></div>
+<div class="comp-stat"><div class="label">Growth</div><div class="val">Stable/slow</div></div>
+</div>
+<div class="comp-threat low">THREAT TO BJARMI: LOW — Different product category. If Bjarmi expands into brushes, these are indirect competitors.</div>
+</div></div>
+
+<h3>Competitive Matrix</h3>
+
+<table class="matrix">
+<tr><th>Company</th><th>Horse Hair?</th><th>Sauna?</th><th>Icelandic?</th><th>Handmade?</th><th>DTC?</th><th>Price</th></tr>
+<tr class="bj"><td>BJARMI RITUAL</td><td class="y">YES</td><td class="y">YES</td><td class="y">YES</td><td class="y">YES</td><td class="y">YES</td><td>$69-129</td></tr>
+<tr><td>Schvitzin</td><td class="n">NO</td><td class="y">YES</td><td class="n">NO</td><td class="y">YES</td><td class="y">YES</td><td>$40-80</td></tr>
+<tr><td>Halsa</td><td class="n">NO</td><td class="y">YES</td><td class="n">NO</td><td class="p">PARTIAL</td><td class="y">YES</td><td>$30-60</td></tr>
+<tr><td>Mass market (Amazon)</td><td class="n">NO</td><td class="y">YES</td><td class="n">NO</td><td class="n">NO</td><td class="n">NO</td><td>$15-35</td></tr>
+<tr><td>Hästens</td><td class="y">YES</td><td class="n">NO</td><td class="n">NO</td><td class="y">YES</td><td class="p">PARTIAL</td><td>$10K+</td></tr>
+<tr><td>John Boyd</td><td class="y">YES</td><td class="n">NO</td><td class="n">NO</td><td class="y">YES</td><td class="n">NO</td><td>$80-500/yd</td></tr>
+<tr><td>Le Crin (Hermès)</td><td class="y">YES</td><td class="n">NO</td><td class="n">NO</td><td class="y">YES</td><td class="n">NO</td><td>$200+/yd</td></tr>
+<tr><td>Tail Spin Bracelets</td><td class="y">YES</td><td class="n">NO</td><td class="n">NO</td><td class="y">YES</td><td class="y">YES</td><td>$40-200</td></tr>
+<tr><td>Becoming Iceland</td><td class="y">YES</td><td class="n">NO</td><td class="y">YES</td><td class="y">YES</td><td class="y">YES</td><td>$50-150</td></tr>
+</table>
+
+<div class="gap-section">
+<h3 style="border:none;margin:0 0 0.5rem;padding:0">Bjarmi's Competitive Gaps to Exploit</h3>
+<div class="gap-grid">
+<div class="gap-item"><h4>First Mover in Horse Hair Sauna Hats</h4><p>Zero competitors worldwide use horse hair for sauna hats. Every single sauna hat brand uses wool. Bjarmi creates an entirely new category.</p></div>
+<div class="gap-item"><h4>Icelandic Provenance Story</h4><p>Only Becoming Iceland uses Icelandic horse hair — and they're a 2-person artisan shop. No scaled brand owns the "Icelandic horse hair" positioning.</p></div>
+<div class="gap-item"><h4>UNESCO Bathing Culture</h4><p>Iceland's bathing culture was UNESCO-recognized in 2025. No sauna brand has leveraged this yet. Bjarmi connects two national treasures.</p></div>
+<div class="gap-item"><h4>Material Innovation</h4><p>Horse hair is stronger, more durable, and more naturally antibacterial than wool — but nobody has told this story to sauna consumers yet.</p></div>
+</div>
+</div>
+
+<div class="verdict">
+<h3>Verdict: Wide Open Market</h3>
+<p>There is <strong>no direct competitor</strong> to Bjarmi Ritual anywhere in the world. The sauna hat market is 100% wool-based. The horse hair market has no sauna products. Bjarmi sits at the intersection of two proven markets — and owns it alone.</p>
+<p style="margin-top:0.8rem">The nearest threats are <strong>Schvitzin</strong> and <strong>Halsa</strong> (premium wool sauna hats), but they cannot match Bjarmi's material story, Icelandic provenance, or UNESCO heritage connection. Their price ceiling ($80) is Bjarmi's entry point ($69).</p>
+<p style="margin-top:0.8rem">Estimated addressable market: <strong>2.4M tourists to Iceland/year</strong> (souvenir channel) + <strong>growing global sauna market</strong> (valued at $3.2B by 2027) + <strong>equestrian gift market</strong> (200M+ horse enthusiasts worldwide).</p>
+</div>
+
+</div>
+
+<div class="ft"><div class="br">BJARMI RITUAL</div><p>Competitive Analysis — April 2026 — Confidential</p></div>
+</body>
+</html>
