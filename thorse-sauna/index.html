@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THORSE — Premium Sauna Hats from Icelandic Horse Hair</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#0a0a0a;--white:#fafafa;--gold:#b8964e;--gold-l:#d4b87a;--cream:#f5f1eb;--warm:#f0ebe2;--char:#1a1a1a;--steam:rgba(255,255,255,0.06);--grey:#888}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:all 0.3s}
+nav.scrolled{background:rgba(10,10,10,0.95);backdrop-filter:blur(12px)}
+.nav-brand{display:flex;align-items:center;gap:0.8rem;text-decoration:none}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;letter-spacing:6px;color:var(--gold);font-weight:700}
+.nav-sub{font-size:0.6rem;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,0.3);border-left:1px solid rgba(255,255,255,0.15);padding-left:0.8rem}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;transition:color 0.3s}
+.nav-links a:hover{color:var(--gold)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;overflow:hidden;background:var(--black)}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1600&q=70') center/cover;opacity:0.15;filter:grayscale(0.5) brightness(0.6)}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,transparent 30%,var(--black))}
+.hero-content{position:relative;z-index:1;max-width:800px}
+.hero-badge{display:inline-block;padding:0.5rem 1.5rem;border:1px solid rgba(184,150,78,0.3);border-radius:50px;font-size:0.65rem;text-transform:uppercase;letter-spacing:4px;color:var(--gold);margin-bottom:2rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,10vw,7rem);font-weight:700;letter-spacing:8px;line-height:0.95;margin-bottom:0.5rem}
+.hero h1 span{display:block;font-size:clamp(1.2rem,3vw,1.6rem);font-family:'DM Sans',sans-serif;font-weight:300;letter-spacing:4px;color:var(--gold-l);margin-top:1rem}
+.hero-line{width:50px;height:1px;background:var(--gold);margin:2rem auto}
+.hero-desc{font-size:1rem;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.9;max-width:520px;margin:0 auto 3rem}
+.cta-btn{display:inline-block;padding:1.1rem 3rem;background:var(--gold);color:var(--black);text-decoration:none;text-transform:uppercase;letter-spacing:3px;font-size:0.75rem;font-weight:700;transition:all 0.3s}
+.cta-btn:hover{background:var(--gold-l);transform:translateY(-2px)}
+.cta-outline{display:inline-block;padding:1.1rem 3rem;border:1px solid rgba(255,255,255,0.2);color:var(--white);text-decoration:none;text-transform:uppercase;letter-spacing:3px;font-size:0.75rem;font-weight:500;transition:all 0.3s;margin-left:1rem}
+.cta-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+/* INTRO QUOTE */
+.quote-section{padding:6rem 2rem;background:var(--warm);text-align:center}
+.quote-inner{max-width:750px;margin:0 auto}
+.quote-section blockquote{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:400;color:var(--char);line-height:1.5;font-style:italic}
+.quote-section cite{display:block;margin-top:1.5rem;font-size:0.85rem;font-style:normal;color:var(--grey);letter-spacing:2px;text-transform:uppercase}
+
+/* WHY SECTION */
+.why{padding:6rem 2rem;background:var(--black)}
+.why-inner{max-width:1000px;margin:0 auto}
+.section-head{text-align:center;margin-bottom:4rem}
+.section-head h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:400;margin-bottom:0.5rem}
+.section-head p{color:var(--grey);font-weight:300;font-size:0.95rem}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.why-card{padding:2.5rem;background:var(--steam);border:1px solid rgba(255,255,255,0.04);border-radius:16px;transition:all 0.3s}
+.why-card:hover{border-color:rgba(184,150,78,0.2);background:rgba(184,150,78,0.03)}
+.why-icon{font-size:2rem;margin-bottom:1rem}
+.why-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:0.7rem}
+.why-card p{font-size:0.88rem;color:rgba(255,255,255,0.4);line-height:1.7}
+
+/* PRODUCT SHOWCASE */
+.products{padding:6rem 2rem;background:var(--char)}
+.products-inner{max-width:1100px;margin:0 auto}
+.product-row{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem}
+.product-row:nth-child(even){direction:rtl}
+.product-row:nth-child(even) > *{direction:ltr}
+.product-img{aspect-ratio:4/5;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#1a1a2a,#0f0f1f);display:flex;align-items:center;justify-content:center;position:relative}
+.product-img img{width:100%;height:100%;object-fit:cover}
+.product-img .badge{position:absolute;top:1.5rem;left:1.5rem;padding:0.4rem 1rem;background:var(--gold);color:var(--black);font-size:0.65rem;text-transform:uppercase;letter-spacing:2px;font-weight:700;border-radius:4px}
+.product-info{padding:1rem 0}
+.product-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:4px;color:var(--gold);margin-bottom:1rem}
+.product-info h3{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:400;margin-bottom:1rem;line-height:1.2}
+.product-info p{font-size:0.95rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:1.5rem}
+.product-price{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);font-weight:600}
+.product-price small{font-family:'DM Sans',sans-serif;font-size:0.8rem;color:var(--grey);font-weight:300;margin-left:0.5rem}
+
+/* FEATURES STRIP */
+.features{padding:4rem 2rem;background:var(--black);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)}
+.features-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;max-width:1000px;margin:0 auto;text-align:center}
+.feature{padding:1rem}
+.feature-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-weight:700}
+.feature-text{font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--grey);margin-top:0.3rem}
+
+/* ICELAND STORY */
+.iceland{padding:6rem 2rem;background:var(--warm);color:var(--char)}
+.iceland-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.iceland-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:400;margin-bottom:1.5rem;color:var(--char)}
+.iceland-text p{font-size:0.95rem;line-height:1.9;color:#666;margin-bottom:1rem}
+.iceland-img{aspect-ratio:3/4;border-radius:16px;overflow:hidden}
+.iceland-img img{width:100%;height:100%;object-fit:cover}
+
+/* HOW IT'S MADE */
+.process{padding:6rem 2rem;background:var(--black)}
+.process-inner{max-width:800px;margin:0 auto}
+.process-steps{display:grid;gap:0}
+.step{display:grid;grid-template-columns:60px 1fr;gap:1.5rem;padding:2rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.step:last-child{border-bottom:none}
+.step-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);font-weight:700;text-align:center;padding-top:0.2rem}
+.step h3{font-size:1rem;font-weight:600;margin-bottom:0.4rem}
+.step p{font-size:0.88rem;color:rgba(255,255,255,0.4);line-height:1.7}
+
+/* GALLERY */
+.gallery{padding:6rem 2rem;background:var(--char)}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;max-width:1100px;margin:0 auto}
+.gallery-item{aspect-ratio:1;border-radius:8px;overflow:hidden;position:relative}
+.gallery-item img{width:100%;height:100%;object-fit:cover;filter:grayscale(0.2);transition:all 0.5s}
+.gallery-item:hover img{transform:scale(1.08);filter:grayscale(0)}
+
+/* CTA FINAL */
+.final{padding:8rem 2rem;background:var(--black);text-align:center;position:relative}
+.final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(184,150,78,0.04),transparent)}
+.final h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:300;margin-bottom:1rem}
+.final h2 em{color:var(--gold);font-style:italic}
+.final p{color:var(--grey);margin-bottom:3rem;font-weight:300}
+.final-btns{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+
+footer{padding:3rem 2rem;text-align:center;background:var(--black);border-top:1px solid rgba(255,255,255,0.04)}
+.f-logo{font-family:'Playfair Display',serif;font-size:1.3rem;letter-spacing:8px;color:var(--gold);margin-bottom:0.3rem}
+footer p{color:rgba(255,255,255,0.2);font-size:0.75rem}
+
+.fade{opacity:0;transform:translateY(25px);transition:opacity 0.7s,transform 0.7s}.fade.vis{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .nav-links,.nav-sub{display:none}
+  .product-row,.iceland-inner{grid-template-columns:1fr}
+  .product-row:nth-child(even){direction:ltr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .features-inner{grid-template-columns:repeat(2,1fr)}
+  .final-btns{flex-direction:column;align-items:center}
+  .cta-outline{margin-left:0}
+  .hero-desc{font-size:0.9rem}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-brand">
+    <span class="nav-logo">THORSE</span>
+    <span class="nav-sub">Sauna Collection</span>
+  </a>
+  <div class="nav-links">
+    <a href="#why">Why Horse Hair</a>
+    <a href="#hats">The Hats</a>
+    <a href="#story">Our Story</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge fade">Handcrafted in Iceland</div>
+    <h1 class="fade">THORSE<span>Premium Sauna Hats</span></h1>
+    <div class="hero-line"></div>
+    <p class="hero-desc fade">The world's first sauna hats made from Icelandic horse hair felt. Born from a thousand years of volcanic winters. Designed for those who take heat seriously.</p>
+    <div class="fade">
+      <a href="#hats" class="cta-btn">Shop the Collection</a>
+      <a href="#why" class="cta-outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<section class="quote-section">
+  <div class="quote-inner fade">
+    <blockquote>"Iceland's bathing culture — recognized by UNESCO in 2025 — deserves headwear as extraordinary as the tradition itself."</blockquote>
+    <cite>The THORSE Philosophy</cite>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="section-head fade">
+      <h2>Why Icelandic Horse Hair?</h2>
+      <p>Superior to wool in every way that matters for sauna</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade">
+        <div class="why-icon">🌡️</div>
+        <h3>Superior Heat Insulation</h3>
+        <p>Icelandic horse hair grows in extreme cold (-30°C), producing fibers that are naturally thicker and denser than wool. The trapped air pockets create an insulating barrier that keeps your head cool while your body absorbs the heat.</p>
+      </div>
+      <div class="why-card fade">
+        <div class="why-icon">💧</div>
+        <h3>Moisture Wicking</h3>
+        <p>Horse hair naturally wicks moisture away from the scalp, keeping you dry in the steamiest löyly. Unlike synthetic materials, it breathes while still insulating — the best of both worlds.</p>
+      </div>
+      <div class="why-card fade">
+        <div class="why-icon">🛡️</div>
+        <h3>Incredibly Durable</h3>
+        <p>Horse hair is stronger than wool and resists matting over time. A THORSE hat will outlast dozens of ordinary sauna hats. The fibers maintain their structure even after hundreds of sessions.</p>
+      </div>
+      <div class="why-card fade">
+        <div class="why-icon">🦠</div>
+        <h3>Naturally Antibacterial</h3>
+        <p>Horse hair has natural antimicrobial properties that resist odor and bacteria buildup — essential for a product used in hot, humid environments. Less washing, longer life.</p>
+      </div>
+      <div class="why-card fade">
+        <div class="why-icon">🐴</div>
+        <h3>Ethically Sourced</h3>
+        <p>Every strand is collected during natural shedding and grooming from Icelandic farms. No horse is ever harmed. The hair is a renewable by-product of Iceland's centuries-old horse culture.</p>
+      </div>
+      <div class="why-card fade">
+        <div class="why-icon">🇮🇸</div>
+        <h3>Authentic Icelandic Heritage</h3>
+        <p>Iceland's geothermal bathing culture is UNESCO-recognized. Our hats connect two Icelandic traditions — the thousand-year-old horse and the ancient hot spring — in one premium product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="features-inner">
+    <div class="feature fade"><div class="feature-num">6mm</div><div class="feature-text">Thick Felt</div></div>
+    <div class="feature fade"><div class="feature-num">100%</div><div class="feature-text">Horse Hair</div></div>
+    <div class="feature fade"><div class="feature-num">200°F</div><div class="feature-text">Heat Rated</div></div>
+    <div class="feature fade"><div class="feature-num">500+</div><div class="feature-text">Sessions Life</div></div>
+  </div>
+</section>
+
+<section class="products" id="hats">
+  <div class="products-inner">
+    <div class="section-head fade">
+      <h2>The Collection</h2>
+      <p>Three hats. One legendary material.</p>
+    </div>
+
+    <div class="product-row fade">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80" alt="THORSE Classic sauna hat">
+        <div class="badge">Bestseller</div>
+      </div>
+      <div class="product-info">
+        <div class="product-label">01 — The Classic</div>
+        <h3>Eldfjall</h3>
+        <p>Our signature dome-shaped sauna hat in natural Icelandic horse hair felt. The tall crown traps a generous air pocket for maximum insulation. Hand-felted to 6mm thickness. Fits all head sizes with a gentle, comfortable weight. The name means "volcano" — because this hat is built for fire.</p>
+        <div class="product-price">$89 <small>Free worldwide shipping</small></div>
+      </div>
+    </div>
+
+    <div class="product-row fade">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="THORSE Viking sauna hat">
+        <div class="badge">Limited Edition</div>
+      </div>
+      <div class="product-info">
+        <div class="product-label">02 — The Viking</div>
+        <h3>Þór</h3>
+        <p>A bold, structured design with a wider brim for full ear and neck protection. Extra-thick 7mm felt with a hand-stitched gold accent line. Named after the Norse god of thunder — for those who don't just enter the sauna, they conquer it. Each hat includes a leather THORSE tag.</p>
+        <div class="product-price">$129 <small>Numbered edition</small></div>
+      </div>
+    </div>
+
+    <div class="product-row fade">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?w=600&q=80" alt="THORSE Aurora sauna hat">
+        <div class="badge">New</div>
+      </div>
+      <div class="product-info">
+        <div class="product-label">03 — The Aurora</div>
+        <h3>Norðurljós</h3>
+        <p>Our softest hat, blending Icelandic horse mane hair with tail hair for a lighter, more supple felt. Perfect for lower-temperature sessions, steam rooms, and hot pot soaking. The natural color variations in the horse hair create a unique aurora-like pattern — no two hats are identical.</p>
+        <div class="product-price">$69 <small>Each one unique</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="iceland" id="story">
+  <div class="iceland-inner">
+    <div class="iceland-text fade">
+      <h2>Two Icelandic Traditions. One Hat.</h2>
+      <p>Iceland's geothermal bathing culture dates back to the Viking Age. In 2025, it was recognized by UNESCO as Intangible Cultural Heritage. With 79% of Icelanders visiting pools regularly, bathing is the nation's living room.</p>
+      <p>The Icelandic horse — unchanged for a thousand years, never crossed with other breeds — has survived volcanic winters and Arctic storms. Their hair is nature's most resilient fiber.</p>
+      <p>THORSE brings these two traditions together for the first time: the ancient art of Icelandic bathing, protected by the hair of Iceland's most iconic animal.</p>
+    </div>
+    <div class="iceland-img fade">
+      <img src="https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=600&q=80" alt="Iceland geothermal landscape">
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="process-inner">
+    <div class="section-head fade">
+      <h2>How It's Made</h2>
+      <p>From pasture to sauna in six steps</p>
+    </div>
+    <div class="process-steps">
+      <div class="step fade"><div class="step-num">01</div><div><h3>Ethical Collection</h3><p>Hair gathered during natural spring shedding and regular grooming from Icelandic farms. Fully traceable, zero waste.</p></div></div>
+      <div class="step fade"><div class="step-num">02</div><div><h3>Sort by Type</h3><p>Tail hair (strongest, for The Viking), mane hair (softest, for The Aurora), and blended for The Classic. Each sorted by hand.</p></div></div>
+      <div class="step fade"><div class="step-num">03</div><div><h3>Wash & Prepare</h3><p>Gentle cleaning with Icelandic geothermal water. No chemicals. The natural oils are preserved for water resistance.</p></div></div>
+      <div class="step fade"><div class="step-num">04</div><div><h3>Wet Felting</h3><p>Traditional wet felting technique — hot water, friction, and time compress the fibers into dense, insulating felt. Each hat takes 3-4 hours to felt by hand.</p></div></div>
+      <div class="step fade"><div class="step-num">05</div><div><h3>Shaping & Finishing</h3><p>Molded on wooden forms, trimmed, and finished with hand-stitched details and a leather THORSE origin tag.</p></div></div>
+      <div class="step fade"><div class="step-num">06</div><div><h3>Certificate of Origin</h3><p>Every hat ships with a card naming the farm and horse it came from. From Iceland, with love.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="section-head fade" style="margin-bottom:3rem;text-align:center">
+    <h2>The World of THORSE</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item fade"><img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=400&q=80" alt="Icelandic horses" loading="lazy"></div>
+    <div class="gallery-item fade"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&q=80" alt="Sauna steam" loading="lazy"></div>
+    <div class="gallery-item fade"><img src="https://images.unsplash.com/photo-1508669232496-137b159c1cdb?w=400&q=80" alt="Icelandic horse portrait" loading="lazy"></div>
+    <div class="gallery-item fade"><img src="https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=400&q=80" alt="Iceland landscape" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="final" id="contact">
+  <h2 class="fade">Protect Your Head.<br>Honour the <em>Tradition.</em></h2>
+  <p class="fade">Premium Icelandic horse hair sauna hats — shipping worldwide from Reykjavík.</p>
+  <div class="final-btns fade">
+    <a href="mailto:alex@vitvelar.is" class="cta-btn">Pre-Order Now</a>
+    <a href="#hats" class="cta-outline">View Collection</a>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">THORSE</div>
+  <p>Premium Icelandic Horse Hair Sauna Hats &nbsp;|&nbsp; Reykjavík, Iceland &nbsp;|&nbsp; © 2026</p>
+</footer>
+
+<script>
+const f=document.querySelectorAll('.fade');
+const o=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('vis')})},{threshold:0.1});
+f.forEach(e=>o.observe(e));
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)});
+</script>
+</body>
+</html>
